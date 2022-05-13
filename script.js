@@ -15,11 +15,13 @@ window.onload = () => {
       data.forEach((d, i) => {
         let q = d.question;
         let idxCorrectAns = Math.round(Math.random() * 3);
-        let ans = [
-          ...d.incorrect_answers.slice(0, idxCorrectAns),
-          d.correct_answer,
-          ...d.incorrect_answers.slice(idxCorrectAns),
-        ];
+        // let ans = [
+        //   ...d.incorrect_answers.slice(0, idxCorrectAns),
+        //   d.correct_answer,
+        //   ...d.incorrect_answers.slice(idxCorrectAns),
+        // ];
+        let ans = d.incorrect_answers
+        ans.splice(idxCorrectAns, 0, d.correct_answer);
         wrap.innerHTML += `<div class="question"><p>${i + 1}. ${q}</p></div>
         <div class="answers">
           ${ans
