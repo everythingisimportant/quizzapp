@@ -1,13 +1,38 @@
-const url =
+const urlSample =
   "https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple";
 const checkmark = "<span class='checkmark'>&#x2713;</span>";
 const btn = document.getElementById("submit");
 let answerGroup = document.getElementsByClassName("answers");
 let data = [];
 let alphabet = ["A", "B", "C", "D"];
-const categories = ['Any', 'General Knowledge', 'Books', 'Film', 'Music', 'Musicals & Theatres', 'Television', 'Video Games', 'Board Games', 'Science & Nature', 'Science: Computers', 'Science: Mathematics', 'Mythology', 'Sports', 'Geography', 'History', 'Politics', 'Art', 'Celebrities', 'Animals', 'Vehicles', 'Comics', 'Science: Gadgets', 'Japanese Anime & Manga', 'Cartoon & Animations'];
+const categories = [
+  "General Knowledge",
+  "Books",
+  "Film",
+  "Music",
+  "Musicals & Theatres",
+  "Television",
+  "Video Games",
+  "Board Games",
+  "Science & Nature",
+  "Science: Computers",
+  "Science: Mathematics",
+  "Mythology",
+  "Sports",
+  "Geography",
+  "History",
+  "Politics",
+  "Art",
+  "Celebrities",
+  "Animals",
+  "Vehicles",
+  "Comics",
+  "Science: Gadgets",
+  "Japanese Anime & Manga",
+  "Cartoon & Animations",
+];
 
-const form = document.getElementsByTagName('form')[0];
+const form = document.getElementsByTagName("form")[0];
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -17,15 +42,16 @@ form.addEventListener("submit", (e) => {
 });
 
 const fetchData = (category, amount, level) => {
-  category = categories.indexOf(category) + 9
-  fetch(
-    `https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${level}&type=multiple`
-  )
+  let url = `https://opentdb.com/api.php?`;
+  category = category === "Any" ? "" : categories.indexOf(category) + 9;
+  if (category) url += `amount=${amount}&category=${category}&difficulty=${level}&type=multiple`
+  else url += `amount=${amount}&difficulty=${level}&type=multiple`
+  fetch(url)
     .then((res) => res.json()) // convert
     .then((res) => {
       data = res.results;
       let wrap = document.querySelector("div.questions");
-      wrap.innerHTML = '';
+      wrap.innerHTML = "";
       data.forEach((d, i) => {
         let q = d.question;
         let idxCorrectAns = Math.round(Math.random() * 3);
@@ -92,7 +118,7 @@ const fetchData = (category, amount, level) => {
 };
 
 window.onload = () => {
-  document.querySelector("input[type=range]").value = 1
+  document.querySelector("input[type=range]").value = 1;
 };
 
 // New data API - designed by myself
