@@ -1,10 +1,10 @@
 const urlSample =
   "https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple";
 const checkmark = "<span class='checkmark'>&#x2713;</span>";
-const btn = document.getElementById("submit");
-let answerGroup = document.getElementsByClassName("answers");
-let data = [];
-let alphabet = ["A", "B", "C", "D"];
+const btnSubmitResult = document.getElementById("submitResult");
+const answerGroup = document.getElementsByClassName("answers");
+const form = document.getElementsByTagName("form")[0];
+const alphabet = ["A", "B", "C", "D"];
 const categories = [
   "General Knowledge",
   "Books",
@@ -31,26 +31,27 @@ const categories = [
   "Japanese Anime & Manga",
   "Cartoon & Animations",
 ];
-
-const form = document.getElementsByTagName("form")[0];
+let data = [];
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   let formData = new FormData(e.target);
   formData = Object.fromEntries(formData);
   fetchData(formData.category, formData.amount, formData.level);
+  btnSubmitResult.classList.remove("toggleDisplay");
 });
 
 const fetchData = (category, amount, level) => {
   let url = `https://opentdb.com/api.php?`;
   category = category === "Any" ? "" : categories.indexOf(category) + 9;
-  if (category) url += `amount=${amount}&category=${category}&difficulty=${level}&type=multiple`
-  else url += `amount=${amount}&difficulty=${level}&type=multiple`
+  if (category)
+    url += `amount=${amount}&category=${category}&difficulty=${level}&type=multiple`;
+  else url += `amount=${amount}&difficulty=${level}&type=multiple`;
   fetch(url)
     .then((res) => res.json()) // convert
     .then((res) => {
+      const wrap = document.querySelector("div.questions");
       data = res.results;
-      let wrap = document.querySelector("div.questions");
       wrap.innerHTML = "";
       data.forEach((d, i) => {
         let q = d.question;
@@ -94,7 +95,7 @@ const fetchData = (category, amount, level) => {
         });
       });
 
-      btn.addEventListener("click", function () {
+      btnSubmitResult.addEventListener("click", function () {
         const isAnswerSlected = document.querySelector(
           "div.answer > span.checkmark"
         );

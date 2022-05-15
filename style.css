@@ -1,80 +1,85 @@
 body {
-    display:flex;
-    align-items:center;
-    flex-direction: column;
-    margin: 15px;
-    background-color: #f5f5f5;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 15px;
+  background-color: #f5f5f5;
 }
 
 span {
-    font-weight: bold;
-    color: white;
-    background-color: red;
-    width: 8%;
-    text-align: center;
+  font-weight: bold;
+  color: white;
+  background-color: red;
+  width: 8%;
+  text-align: center;
 }
 
 button {
-    font-size: 18px;
-    color: red;
-    background-color: #f5f5f5;
-    width: 30%;
-    border: 1px solid rgb(204, 120, 120);
-    cursor: pointer;
-    margin-top: 15px;
-    padding: 10px;
+  font-size: 18px;
+  color: red;
+  background-color: #f5f5f5;
+  border: 1px solid rgb(204, 120, 120);
+  cursor: pointer;
+  margin-top: 15px;
+  padding: 10px;
 }
 
 button:hover {
-    background-color: rgb(204, 120, 120);
-    color: white;
+  background-color: rgb(204, 120, 120);
+  color: white;
 }
 
 .question {
-    color: white;
-    background-color: rgb(204, 120, 120);
-    text-align: center;
+  color: white;
+  background-color: rgb(204, 120, 120);
+  text-align: center;
 }
 
-.question, .answers {
-    display: flex;
-    flex-direction: column;
+.question,
+.answers {
+  display: flex;
+  flex-direction: column;
 }
 
-.question, .answer {
-    font-size: 20px;
-    padding: 10px;
-    margin: 10px;
+.question,
+.answer {
+  font-size: 20px;
+  padding: 10px;
+  margin: 10px;
 }
 
 .answer {
-    background-color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .answer:hover {
-    cursor: pointer;
-    background-color: rgb(108, 207, 108);
+  cursor: pointer;
+  background-color: rgb(108, 207, 108);
 }
 
 span.checkmark {
-    color: green;
-    display: block;
+  color: green;
+  display: block;
 }
 
 .checkmark {
-    display:inline-block;
-    width: 22px;
-    height:22px;
-    -ms-transform: rotate(45deg); /* IE 9 */
-    -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
-    transform: rotate(45deg);
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  -ms-transform: rotate(45deg); /* IE 9 */
+  -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
+  transform: rotate(45deg);
 }
 
 .selected {
-    color: rgb(29, 88, 216);
+  color: rgb(29, 88, 216);
+}
+
+.toggleDisplay {
+  display: none;
 }
 
 /* .checkmark_stem {

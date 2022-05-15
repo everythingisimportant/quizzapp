@@ -1,69 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>N Quizz App</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Quiz Interface</h1>
 
     <form name="fetchQuestion">
-        <div>
-            <label for="categories">Choose a category:</label>
-            <select name="category" id="category">
-                <option value="Any">Any</option>
-                <option value="General Knowledge">General Knowledge</option>
-                <option value="Books">Books</option>
-                <option value="Film">Film</option>
-                <option value="Music">Music</option>
-                <option value="Musicals & Theatres">Musicals & Theatres</option>
-                <option value="Television">Television</option>
-                <option value="Video Games">Video Games</option>
-                <option value="Board Games">Board Games</option>
-                <option value="Science & Nature">Science & Nature</option>
-                <option value="Science: Computers">Science: Computers</option>
-                <option value="Science: Mathematics">Science: Mathematics</option>
-                <option value="Mythology">Mythology</option>
-                <option value="Sports">Sports</option>
-                <option value="Geography">Geography</option>
-                <option value="History">History</option>
-                <option value="Politics">Politics</option>
-                <option value="Art">Art</option>
-                <option value="Celebrities">Celebrities</option>
-                <option value="Animals">Animals</option>
-                <option value="Vehicles">Vehicles</option>
-                <option value="Comics">Comics</option>
-                <option value="Science: Gadgets">Science: Gadgets</option>
-                <option value="Japanese Anime & Manga">Japanese Anime & Manga</option>
-                <option value="Cartoon & Animations">Cartoon & Animations</option>
-            </select>    
-        </div>
-        <br/>
-        <div>
-            <label for="difficult">Choose difficult level:</label>
-            <select name="level" id="level">
-                <option value="easy">Easy</option>
-                <option value="medium">Medium</option>
-                <option value="hard">Hard</option>
-            </select>    
-        </div>
-        <br/>
-        <div>
-            <label for="amount">Amount (1 to 50):</label>
-            <input type="range" name="amount" min="1" max="50" oninput="this.nextElementSibling.value = this.value">
-            <output>1</output>
-        </div>
-        <button type="submit" style="margin-left:35%; width:auto;">I'm ready</button>
+      <div>
+        <label for="categories">Choose a category:</label>
+        <select name="category" id="category">
+          <option value="Any">Any</option>
+          <option value="General Knowledge">General Knowledge</option>
+          <option value="Books">Books</option>
+          <option value="Film">Film</option>
+          <option value="Music">Music</option>
+          <option value="Musicals & Theatres">Musicals & Theatres</option>
+          <option value="Television">Television</option>
+          <option value="Video Games">Video Games</option>
+          <option value="Board Games">Board Games</option>
+          <option value="Science & Nature">Science & Nature</option>
+          <option value="Science: Computers">Science: Computers</option>
+          <option value="Science: Mathematics">Science: Mathematics</option>
+          <option value="Mythology">Mythology</option>
+          <option value="Sports">Sports</option>
+          <option value="Geography">Geography</option>
+          <option value="History">History</option>
+          <option value="Politics">Politics</option>
+          <option value="Art">Art</option>
+          <option value="Celebrities">Celebrities</option>
+          <option value="Animals">Animals</option>
+          <option value="Vehicles">Vehicles</option>
+          <option value="Comics">Comics</option>
+          <option value="Science: Gadgets">Science: Gadgets</option>
+          <option value="Japanese Anime & Manga">Japanese Anime & Manga</option>
+          <option value="Cartoon & Animations">Cartoon & Animations</option>
+        </select>
+      </div>
+      <br />
+      <div>
+        <label for="difficult">Choose difficult level:</label>
+        <select name="level" id="level">
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+      </div>
+      <br />
+      <div>
+        <label for="amount">Amount (1 to 50):</label>
+        <input
+          type="range"
+          name="amount"
+          min="1"
+          max="50"
+          oninput="this.nextElementSibling.value = this.value"
+        />
+        <output>1</output>
+      </div>
+      <div style="text-align: center">
+        <button type="submit">I'm ready</button>
+      </div>
     </form>
 
     <div class="questions"></div>
 
-    <button id="submit">Send ></button>
+    <button id="submitResult" class="toggleDisplay">Send ></button>
 
-    </span>
     <script type="text/javascript" src="script.js"></script>
-</body>
+  </body>
 </html>
