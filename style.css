@@ -39,7 +39,6 @@ button:hover {
 .question, .answers {
     display: flex;
     flex-direction: column;
-    width: 500px;
 }
 
 .question, .answer {
