@@ -31,14 +31,34 @@ const categories = [
   "Japanese Anime & Manga",
   "Cartoon & Animations",
 ];
-let data = [];
+let dataArray = [];
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   let formData = new FormData(e.target);
   formData = Object.fromEntries(formData);
   fetchData(formData.category, formData.amount, formData.level);
-  btnSubmitResult.classList.remove("toggleDisplay");
+  if (btnSubmitResult.classList.value === "toggleDisplay")
+    btnSubmitResult.classList.remove("toggleDisplay");
+});
+
+btnSubmitResult.addEventListener("click", function () {
+  const isAnswerSlected = document.querySelector("div.answer > span.checkmark");
+  if (isAnswerSlected) {
+    alert(
+      `${
+        Array.from(document.querySelectorAll("span.checkmark"))
+          .map(
+            (a) =>
+              a.previousElementSibling.getAttribute("data-is-correct") ===
+              "true"
+          )
+          .filter(Boolean).length
+      } / ${answerGroup.length}`
+    );
+  } else {
+    alert("Please choose an answer!");
+  }
 });
 
 const fetchData = (category, amount, level) => {
@@ -51,27 +71,27 @@ const fetchData = (category, amount, level) => {
     .then((res) => res.json()) // convert
     .then((res) => {
       const wrap = document.querySelector("div.questions");
-      data = res.results;
+      dataArray = res.results;
       wrap.innerHTML = "";
-      data.forEach((d, i) => {
-        let q = d.question;
+      dataArray.forEach((data, i) => {
+        let question = data.question;
         let idxCorrectAns = Math.round(Math.random() * 3);
         // let ans = [
         //   ...d.incorrect_answers.slice(0, idxCorrectAns),
         //   d.correct_answer,
         //   ...d.incorrect_answers.slice(idxCorrectAns),
         // ];
-        let ans = d.incorrect_answers;
-        ans.splice(idxCorrectAns, 0, d.correct_answer);
-        wrap.innerHTML += `<div class="question"><p>${i + 1}. ${q}</p></div>
+        let answerArray = data.incorrect_answers;
+        answerArray.splice(idxCorrectAns, 0, data.correct_answer);
+        wrap.innerHTML += `<div class="question"><p>${i + 1}. ${question}</p></div>
       <div class="answers">
-        ${ans
+        ${answerArray
           .map(
-            (a, i) =>
+            (answer, i) =>
               `<div class="answer">
                 <span>${alphabet[i]}</span><p data-is-correct=${
                 i == idxCorrectAns ? "true" : "false"
-              }>${a}</p>
+              }>${answer}</p>
             </div>`
           )
           .join("\n")}
@@ -83,8 +103,8 @@ const fetchData = (category, amount, level) => {
           (child) => child.nodeName !== "#text"
         );
         answer4.forEach((answer) => {
-          answer.addEventListener("click", function (event) {
-            Array.from(answer4).forEach((answer) => {
+          answer.addEventListener("click", function () {
+            answer4.forEach((answer) => {
               if (answer.querySelector("span.checkmark"))
                 answer.querySelector("span.checkmark").remove();
               answer.querySelector("p").classList.remove("selected");
@@ -93,27 +113,6 @@ const fetchData = (category, amount, level) => {
             this.querySelector("p").classList.add("selected");
           });
         });
-      });
-
-      btnSubmitResult.addEventListener("click", function () {
-        const isAnswerSlected = document.querySelector(
-          "div.answer > span.checkmark"
-        );
-        if (isAnswerSlected) {
-          alert(
-            `${
-              Array.from(document.querySelectorAll("span.checkmark"))
-                .map(
-                  (a) =>
-                    a.previousElementSibling.getAttribute("data-is-correct") ===
-                    "true"
-                )
-                .filter(Boolean).length
-            } / ${answerGroup.length}`
-          );
-        } else {
-          alert("Please choose an answer!");
-        }
       });
     });
 };
